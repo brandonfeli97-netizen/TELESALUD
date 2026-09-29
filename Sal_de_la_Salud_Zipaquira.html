@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sal de la Salud: telesalud para Zipaquirá</title>
+<style>
+:root{--bg:#EEF4F5;--surf:#FFFFFF;--ink:#12232B;--mute:#4C6570;--line:#C9D9DD;--cy:#1E7F8C;--cyl:#D5ECEF;--am:#B9770E;--aml:#FBEBCB;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1E25;--surf:#172B34;--ink:#E7F1F3;--mute:#9DB6BE;--line:#2A424C;--cy:#5CC3D1;--cyl:#173C45;--am:#F2B84B;--aml:#3A2E12;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1E25;--surf:#172B34;--ink:#E7F1F3;--mute:#9DB6BE;--line:#2A424C;--cy:#5CC3D1;--cyl:#173C45;--am:#F2B84B;--aml:#3A2E12;color-scheme:dark}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:20px 18px 60px}
+h1,h2,h3{font-family:"Iowan Old Style",Georgia,"Times New Roman",serif;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,7vw,3.2rem);letter-spacing:-.01em}
+h2{font-size:1.6rem;margin-bottom:6px}
+section{margin-top:52px}
+p{margin:.5em 0}.mute{color:var(--mute)}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,summary:focus-visible{outline:3px solid var(--am);outline-offset:2px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tog{background:var(--surf);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.85rem}
+.hero{padding:30px 0 6px}
+.hero p.lead{font-size:1.15rem;max-width:56ch}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:18px}
+.seg{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.seg button{background:var(--surf);border:1.5px solid var(--line);border-radius:10px;padding:10px 14px;text-align:left;flex:1 1 200px}
+.seg button[aria-pressed="true"]{border-color:var(--cy);background:var(--cyl)}
+.seg b{display:block}
+.seg span{font-size:.85rem;color:var(--mute)}
+.out{border-left:5px solid var(--am);background:var(--aml);border-radius:0 12px 12px 0;padding:14px 16px;min-height:96px}
+.out h3{font-size:1.1rem;margin-bottom:4px}
+/* recorrido */
+.track{display:flex;gap:6px;margin:14px 0 10px}
+.track button{flex:1;height:14px;border-radius:7px;border:0;background:var(--line);padding:0}
+.track button.done{background:var(--cy)}
+.track button.on{background:var(--am);height:20px;align-self:center}
+.step{min-height:150px}
+.step .tag{display:inline-block;font-size:.8rem;background:var(--cyl);color:var(--cy);border-radius:6px;padding:2px 8px;margin-bottom:6px}
+.nav{display:flex;justify-content:space-between;margin-top:12px}
+.nav button{background:var(--cy);color:#fff;border:0;border-radius:10px;padding:10px 18px;font-weight:600}
+:root[data-theme="dark"] .nav button{color:#08161B}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .nav button{color:#08161B}}
+.nav button[disabled]{opacity:.35;cursor:default}
+/* componentes */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{border:1.5px solid var(--line);background:var(--surf);border-radius:999px;padding:6px 14px;font-size:.9rem}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.grid button{background:var(--surf);border:1.5px solid var(--line);border-radius:12px;padding:12px;text-align:left;transition:transform .15s}
+.grid button:hover{transform:translateY(-2px)}
+.grid button[aria-pressed="true"]{border-color:var(--am);background:var(--aml)}
+.grid button.dim{opacity:.3}
+.grid small{display:block;color:var(--mute);margin-top:3px}
+.detail{margin-top:14px;border:1.5px solid var(--am);border-radius:14px;padding:16px;background:var(--surf)}
+.detail dl{margin:8px 0 0;display:grid;grid-template-columns:110px 1fr;gap:6px 12px}
+.detail dt{font-weight:600;color:var(--cy)}.detail dd{margin:0}
+@media (max-width:520px){.detail dl{grid-template-columns:1fr}}
+/* principio 2 */
+details{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:8px 0}
+summary{cursor:pointer;font-weight:600}
+details p{color:var(--mute);margin:8px 0 0}
+/* fases */
+.ph{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ph button{background:var(--surf);border:1.5px solid var(--line);border-radius:12px;padding:10px;text-align:left}
+.ph button[aria-pressed="true"]{border-color:var(--cy);background:var(--cyl)}
+.ph small{display:block;color:var(--mute)}
+@media (max-width:600px){.ph{grid-template-columns:1fr 1fr}}
+footer{margin-top:50px;font-size:.85rem;color:var(--mute);border-top:1px solid var(--line);padding-top:14px}
+.nav2{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;overflow-x:auto;padding:8px 0;background:var(--bg);border-bottom:1px solid var(--line);margin:10px 0}
+.nav2 a{white-space:nowrap;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--surf);border-radius:999px;padding:7px 13px;font-size:.9rem}
+.nav2 a:focus-visible{outline:3px solid var(--am)}
+.how{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.how div{flex:1 1 190px;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:.92rem}
+.why{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--cyl);font-size:.93rem;color:var(--ink)}
+.cmp{display:grid;grid-template-columns:1fr;gap:4px;margin:0}
+.cmp div{padding:10px 0;border-bottom:1px solid var(--line)}
+.cmp b{display:block;color:var(--cy)}
+.ok{background:var(--cyl)}.no{background:var(--aml)}
+.logo{display:flex;align-items:center;gap:14px}.logo svg{flex:none}
+.big{display:block;font:700 1.7rem "Iowan Old Style",Georgia,serif;color:var(--cy);line-height:1.1}
+#dl{margin:14px 0 0;display:flex;gap:8px;flex-wrap:wrap}#dl[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><span class="mute">Zipaquirá, Cundinamarca</span><button class="tog" id="theme">Cambiar tema</button></div>
+
+<header class="hero">
+<div class="logo"><svg width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Logo de Sal de la Salud: arco de la catedral con una cruz de salud"><path d="M6 60V30C6 15 18 4 32 4s26 11 26 26v30z" fill="var(--cy)"/><rect x="27" y="24" width="10" height="28" rx="2" fill="var(--bg)"/><rect x="18" y="33" width="28" height="10" rx="2" fill="var(--bg)"/><path d="M32 8l5 6-5 6-5-6z" fill="var(--am)"/></svg><h1>Sal de la Salud</h1></div>
+<p class="lead">Que el control de salud llegue a la vereda antes de que llegue la enfermedad. Una red de telesalud abierta, gratuita y hecha con la comunidad, pensada para la promoción y la prevención.</p>
+<p id="dl" hidden><button class="tog" id="dlHtml">Descargar esta página (.html)</button><button class="tog" id="dlMd">Descargar resumen (.md)</button></p>
+</header>
+
+<nav class="nav2" aria-label="Secciones"><a href="#clave">Palabras clave</a><a href="#datos">Datos reales</a><a href="#p1">Conexión</a><a href="#flujo">Recorrido</a><a href="#comp">Componentes</a><a href="#p2">Bien público digital</a><a href="#fases">Fases</a></nav>
+<div class="how"><div><b>1. Toca</b><br>Los botones cambian la información.</div><div><b>2. Avanza</b><br>Usa «Siguiente» para seguir el recorrido.</div><div><b>3. Abre</b><br>Las tarjetas muestran más detalle.</div></div>
+
+<section id="clave">
+<h2>Antes de empezar: cuatro palabras</h2>
+<p class="mute">Toca una para ver qué significa.</p>
+<div class="chips" id="gl"></div>
+<div class="out" id="glOut" aria-live="polite"></div>
+</section>
+
+<section id="datos">
+<h2>Los datos que sustentan el plan</h2>
+<p>Estas cifras públicas muestran por qué Zipaquirá necesita telesalud. Toca una para ver qué significa para el plan.</p>
+<div class="grid" id="dt"></div>
+<div class="out" id="dtOut" style="margin-top:12px" aria-live="polite"></div>
+</section>
+
+<section id="p1">
+<h2>Nadie se queda sin conexión</h2>
+<p>Un servicio de salud digital que solo funciona con buena señal y un smartphone deja fuera justo a quien más lo necesita. Por eso Sal de la Salud ofrece tres formas de llegar.</p>
+<p class="mute">Principio 2: conectividad universal. Elige cómo se conecta Rosa, de 72 años, y mira qué recibe.</p>
+<div class="seg" id="acc" role="group" aria-label="Nivel de acceso"></div>
+<div class="out" id="accOut" aria-live="polite"></div>
+</section>
+
+<section id="flujo">
+<h2>Un control, paso a paso</h2>
+<p>La prevención necesita controles repetidos, y para quien vive lejos cada control es un viaje. Así se atiende a Rosa sin que ninguno signifique ir al hospital. Toca las barras de colores para saltar a un paso.</p>
+<div class="track" id="track"></div>
+<div class="card step" id="step" aria-live="polite"></div>
+<div class="nav"><button id="prev">Anterior</button><button id="play">Reproducir solo</button><button id="next">Siguiente</button></div>
+</section>
+
+<section id="comp">
+<h2>Catorce componentes de PyP</h2>
+<p class="mute">Filtra por fase y toca un componente para ver a quién llega y cómo.</p>
+<div class="chips" id="chips" role="group" aria-label="Filtrar por fase"></div>
+<div class="grid" id="grid"></div>
+<div class="detail" id="detail" hidden aria-live="polite"></div>
+</section>
+
+<section id="p2">
+<h2>¿Qué es un bien público digital?</h2>
+<p>Es una herramienta digital que <b>es de todos</b>: cualquiera puede usarla, copiarla, revisarla y mejorarla. Piensa en la plaza de Zipaquirá: nadie es su dueño exclusivo, todos la usan y la comunidad la cuida. Un bien público digital es lo mismo, pero en internet.</p>
+<p class="mute">Principio 1: cocrear bienes de salud pública digitales por un mundo más equitativo.</p>
+<h3 style="margin-top:20px">Compara</h3>
+<div class="seg" id="cmpSeg" role="group" aria-label="Tipo de servicio"></div>
+<div class="card" id="cmpOut" aria-live="polite"></div>
+<h3 style="margin-top:24px">Las seis características</h3>
+<p class="mute">Abre cada una para ver qué significa y cómo se vería en Zipaquirá.</p>
+<div id="pub"></div>
+<h3 style="margin-top:24px">Ponte a prueba: ¿qué aprendiste de esta página?</h3>
+<p class="mute">Verdadero o falso, con preguntas sobre lo que acabas de leer.</p>
+<div class="card" id="qz"></div>
+<div class="out" id="score" hidden aria-live="polite"></div>
+</section>
+
+<section id="fases">
+<h2>Cómo se construye</h2>
+<div class="ph" id="ph" role="group" aria-label="Fases"></div>
+<div class="out" id="phOut" style="margin-top:12px" aria-live="polite"></div>
+</section>
+
+<footer>Propuesta de trabajo. Faltan las cifras del ASIS municipal de Zipaquirá (morbilidad por vereda, población rural y conectividad); las metas se fijan con esa línea base. La telesalud complementa la atención presencial y nunca la reemplaza.</footer>
+</main>
+
+<script>
+var $=function(i){return document.getElementById(i)};
+var root=document.documentElement;
+$('theme').onclick=function(){
+  var dark=root.getAttribute('data-theme')?root.getAttribute('data-theme')==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+  root.setAttribute('data-theme',dark?'light':'dark');
+};
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+
+/* Principio 2 */
+var ACC=[
+ ['Tiene smartphone','Aplicación web ligera',"Rosa abre la app en el celular de su nieto, ve sus rutinas en video corto y recibe alertas. Si se cae la señal, la app guarda todo y lo envía cuando vuelve."],
+ ['Tiene celular básico','SMS, voz y WhatsApp',"Rosa recibe un SMS para recordarle su control de tensión y una llamada automática con voz clara para confirmar su cita. No necesita internet."],
+ ['No tiene dispositivo','Punto Sal con promotor',"Rosa camina al salón comunal, donde un promotor le toma la tensión, la conecta con la enfermera por videollamada y le enseña a usar el servicio."]
+];
+var a=0;
+function renderAcc(){
+  $('acc').innerHTML=ACC.map(function(x,i){return '<button aria-pressed="'+(i===a)+'" data-i="'+i+'"><b>'+x[0]+'</b><span>'+x[1]+'</span></button>'}).join('');
+  $('accOut').innerHTML='<h3>'+esc(ACC[a][1])+'</h3><p>'+esc(ACC[a][2])+'</p>';
+  [].forEach.call($('acc').children,function(b){b.onclick=function(){a=+b.dataset.i;renderAcc()}});
+}
+renderAcc();
+
+/* Recorrido */
+var ST=[
+ ['Captación','El promotor identifica a Rosa: adulta mayor, con hipertensión y lejos de la cabecera.'],
+ ['Tamizaje en el punto Sal','Le miden tensión, glucosa, peso y talla, y responde tamizajes breves sobre caídas y ánimo.'],
+ ['Teleconsulta','Un profesional revisa sus datos en directo o en diferido y decide el plan.'],
+ ['Plan y educación','Recibe rutinas de ejercicio, consejos de alimentación y mensajes en lenguaje sencillo, por el canal que ella pueda usar.'],
+ ['Seguimiento remoto','Recordatorios por SMS, voz o WhatsApp. Si una cifra sale de rango, se dispara una alerta al equipo.'],
+ ['Derivación','Si hay signos de alarma: cita presencial priorizada o consulta con un especialista del Hospital Regional, sin trasladar a Rosa a ciegas.'],
+ ['Registro','Todo queda en la historia clínica de la IPS y en indicadores anónimos que ven la Secretaría y la comunidad.']
+];
+var WY=['Sin búsqueda activa, quien más lo necesita no llega. Así Rosa no queda fuera.','Los datos básicos permiten decidir si basta una orientación a distancia o se necesita atención presencial.','El profesional atiende sin que Rosa viaje, y su tiempo rinde más.','Un plan claro y en lenguaje sencillo aumenta las probabilidades de que se cumpla.','La prevención depende de la continuidad. Los recordatorios evitan que Rosa se pierda entre controles.','El hospital se reserva para lo que de verdad lo necesita, y Rosa llega con el caso ya orientado.','Sin registro no hay continuidad ni datos para decidir dónde reforzar el servicio.'];
+var s=0;
+function renderStep(){
+  $('track').innerHTML=ST.map(function(x,i){return '<button class="'+(i<s?'done':i===s?'on':'')+'" aria-label="Paso '+(i+1)+': '+x[0]+'" data-i="'+i+'"></button>'}).join('');
+  $('step').innerHTML='<span class="tag">Paso '+(s+1)+' de '+ST.length+'</span><h3>'+ST[s][0]+'</h3><p>'+esc(ST[s][1])+'</p><div class="why"><b>¿Por qué se hace así?</b> '+WY[s]+'</div>';
+  $('prev').disabled=s===0;$('next').disabled=s===ST.length-1;
+  [].forEach.call($('track').children,function(b){b.onclick=function(){s=+b.dataset.i;renderStep()}});
+}
+$('prev').onclick=function(){if(s>0){s--;renderStep()}};
+$('next').onclick=function(){if(s<ST.length-1){s++;renderStep()}};
+renderStep();
+
+/* Componentes */
+var C=[
+ ['Riesgo cardiovascular y metabólico',2,'Adultos con hipertensión, diabetes u obesidad','Tamizaje en el punto Sal, telemonitoreo de tensión y glucosa, teleconsulta de ajuste y educación','Telemonitoreo, teleconsulta'],
+ ['Envejecimiento y funcionalidad',2,'Adultos mayores y cuidadores','Valoración funcional asistida, rutinas de fuerza y equilibrio en video, prevención de caídas','Teleconsulta de fisioterapia'],
+ ['Salud mental y sustancias',2,'Todas las edades','Tamizajes breves, teleorientación, enlace con centros de escucha y ruta de crisis','Teleorientación, teleconsulta'],
+ ['Materno-perinatal y salud sexual',3,'Gestantes, mujeres en edad fértil y adolescentes','Captación temprana, recordatorios de controles, señales de alarma y consejería','Teleorientación, telemonitoreo'],
+ ['Primera infancia y adolescencia',3,'Niños, familias y adolescentes','Recordatorios de crecimiento y vacunación, pautas de crianza y canal privado para adolescentes','Teleorientación, teleeducación'],
+ ['Nutrición y actividad física',3,'Niños, gestantes y adultos','Tamizaje antropométrico, planes con alimentos locales y clubes de actividad física','Teleconsulta de nutrición'],
+ ['Vacunación y transmisibles',3,'Toda la población','Búsqueda de inasistentes, orientación a sintomáticos y alertas a vigilancia','Teleorientación, vigilancia'],
+ ['Detección del cáncer',3,'Población objetivo de tamización','Agendamiento, toma de muestras, entrega de resultados y seguimiento de anormales','Telexperticia'],
+ ['Discapacidad y rehabilitación',3,'Personas con discapacidad y cuidadores','Tele-rehabilitación, seguimiento de ayudas técnicas y contenidos accesibles','Tele-rehabilitación'],
+ ['Prevención de violencias',3,'Mujeres, niños y cuidadores','Canales confidenciales, detección en teleconsulta y rutas de protección','Teleorientación confidencial'],
+ ['Salud oral, visual y auditiva',4,'Escolares y adultos mayores','Tamizajes sencillos con fotografías y optotipos digitales, y derivación','Telemedicina no interactiva'],
+ ['Respiratoria y ambiental',4,'Hogares rurales y personas con EPOC o asma','Oximetría, técnica de inhaladores, agua segura y reportes ambientales','Telemonitoreo, teleeducación'],
+ ['Salud y ámbito laboral',4,'Trabajadores informales, agrícolas y de turismo','Ergonomía, pausas activas y tamizaje cardiovascular en el trabajo','Teleorientación'],
+ ['Educación y alfabetización digital',1,'Toda la comunidad','Talleres prácticos, contenidos abiertos y monitores digitales jóvenes','Teleeducación asistida']
+];
+var ph=0,sel=-1;
+var PL=['Todas',1,2,3,4];
+function renderChips(){
+  $('chips').innerHTML=PL.map(function(p,i){return '<button class="chip" aria-pressed="'+(i===ph)+'" data-i="'+i+'">'+(i?'Fase '+p:'Todas')+'</button>'}).join('');
+  [].forEach.call($('chips').children,function(b){b.onclick=function(){ph=+b.dataset.i;renderChips();renderGrid()}});
+}
+function renderGrid(){
+  $('grid').innerHTML=C.map(function(c,i){
+    var on=!ph||c[1]===PL[ph];
+    return '<button class="'+(on?'':'dim')+'" aria-pressed="'+(i===sel)+'" data-i="'+i+'"><b>'+c[0]+'</b><small>Fase '+c[1]+'</small></button>';
+  }).join('');
+  [].forEach.call($('grid').children,function(b){b.onclick=function(){sel=+b.dataset.i;renderGrid();showDetail()}});
+}
+function showDetail(){
+  var c=C[sel];if(!c)return;
+  $('detail').hidden=false;
+  $('detail').innerHTML='<h3>'+c[0]+'</h3><dl><dt>Llega a</dt><dd>'+esc(c[2])+'</dd><dt>Qué se hace</dt><dd>'+esc(c[3])+'</dd><dt>Modalidad</dt><dd>'+esc(c[4])+'</dd><dt>Fase</dt><dd>'+c[1]+'</dd></dl>';
+}
+renderChips();renderGrid();
+
+/* Principio 1 */
+var PUB=[
+ ['Código abierto','Cualquier municipio puede instalarlo, auditarlo y mejorarlo. Habrá un kit de replicación con guías.'],
+ ['Datos abiertos y anónimos','Un tablero público muestra cobertura y brechas por barrio y vereda, sin datos que identifiquen a nadie.'],
+ ['Estándares que conversan','Usa estándares abiertos como HL7 FHIR para conectarse con las IPS y la historia clínica electrónica.'],
+ ['Contenidos con licencia abierta','Videos, guías y rutinas se pueden reutilizar libremente.'],
+ ['Gratis y sin publicidad','La ciudadanía no paga y sus datos no se usan con fines comerciales.'],
+ ['Cocreada con la comunidad','Las mingas digitales diseñan y prueban la plataforma con adultos mayores, cuidadores, jóvenes y personal de salud.']
+];
+var EX=['Un ingeniero de otro municipio puede revisar el código y proponer mejoras.','Cualquier vecino ve cuántos adultos mayores de su vereda tienen el control al día, sin ver nombres.','El control que Rosa se hace en el punto Sal aparece en la historia clínica de su IPS sin digitarlo otra vez.','Un colegio rural usa los videos de ejercicio en clase o los proyecta en la junta comunal.','Rosa nunca paga por usar la plataforma ni ve anuncios.','Los adultos mayores prueban la app y dicen qué botón no entienden antes de que se publique.'];
+$('pub').innerHTML=PUB.map(function(x,i){return '<details><summary>'+x[0]+'</summary><p>'+x[1]+'</p><p class="why"><b>En Zipaquirá:</b> '+EX[i]+'</p></details>'}).join('');
+
+/* Reproducción automática */
+var tm=null;
+$('play').onclick=function(){
+  if(tm){clearInterval(tm);tm=null;this.textContent='Reproducir solo'}
+  else{this.textContent='Pausar';tm=setInterval(function(){s=s<ST.length-1?s+1:0;renderStep()},3500)}
+};
+
+/* Glosario */
+var GL=[
+ ['Telesalud','Atención y cuidado de la salud a distancia, con apoyo de tecnología: videollamada, mensajes, llamadas o mediciones enviadas desde un punto de atención. No reemplaza la consulta presencial: la complementa.'],
+ ['PyP','Promoción de la salud y prevención de la enfermedad. Son las acciones para mantenerse sano y detectar a tiempo, como controles de tensión, vacunas y tamizajes.'],
+ ['Punto Sal','Un lugar comunitario (salón comunal, colegio, casa de la cultura) con conexión y equipos básicos, atendido por un promotor.'],
+ ['Promotor','Persona de la comunidad, capacitada para acompañar, tomar mediciones y enseñar a usar la plataforma. Es el puente de confianza con los vecinos.']
+];
+var g=0;
+function renderGl(){
+  $('gl').innerHTML=GL.map(function(x,i){return '<button class="chip" aria-pressed="'+(i===g)+'" data-i="'+i+'">'+x[0]+'</button>'}).join('');
+  $('glOut').innerHTML='<h3>'+GL[g][0]+'</h3><p>'+GL[g][1]+'</p>';
+  [].forEach.call($('gl').children,function(b){b.onclick=function(){g=+b.dataset.i;renderGl()}});
+}
+renderGl();
+
+/* Comparación */
+var CM=[
+ ['¿Quién puede usarlo?','Solo quien la empresa autoriza o paga.','Toda persona de Zipaquirá, sin costo.'],
+ ['¿Quién puede ver cómo funciona?','Nadie: el código es secreto.','Cualquiera: el código es público y se puede auditar.'],
+ ['¿Qué pasa con los datos de los pacientes?','Suelen quedar en manos de la empresa.','Quedan bajo control del municipio y las IPS. Solo se publican cifras anónimas.'],
+ ['¿Qué pasa si la empresa cierra o sube los precios?','El municipio pierde el servicio o paga más.','El código sigue disponible y otro equipo puede mantenerlo.'],
+ ['¿Otro municipio puede usarlo?','Tiene que comprarlo de nuevo.','Puede copiarlo y adaptarlo gratis.']
+];
+var cm=0;
+function renderCm(){
+  var L=['Servicio privado cerrado','Bien público digital'];
+  $('cmpSeg').innerHTML=L.map(function(t,i){return '<button aria-pressed="'+(i===cm)+'" data-i="'+i+'"><b>'+t+'</b><span>'+(i?'Sal de la Salud':'Ejemplo: una app comercial')+'</span></button>'}).join('');
+  $('cmpOut').innerHTML='<div class="cmp">'+CM.map(function(r){return '<div><b>'+r[0]+'</b>'+r[cm+1]+'</div>'}).join('')+'</div>';
+  [].forEach.call($('cmpSeg').children,function(b){b.onclick=function(){cm=+b.dataset.i;renderCm()}});
+}
+renderCm();
+
+/* Quiz */
+var Q=[
+ ['Rosa no tiene celular, pero en Sal de la Salud igual puede ser atendida con ayuda de un promotor en el punto Sal.',true,'Es el tercer nivel de acceso: sin dispositivo, con atención asistida.'],
+ ['En 2024 los adultos mayores eran cerca del 13 % de la población de Zipaquirá, por eso el plan prioriza su funcionalidad y sus controles.',true,'Eran 21.552 personas (13,2 %), según las proyecciones del DANE.'],
+ ['Los datos personales de los pacientes se publican abiertamente en el tablero público.',false,'Solo se publican cifras anónimas. Los datos personales quedan bajo control del municipio y las IPS.'],
+ ['La telesalud reemplaza por completo la atención presencial.',false,'La complementa: si hay signos de alarma, hay cita presencial o consulta con un especialista del Hospital Regional.'],
+ ['Una plataforma gratuita pero de código cerrado cumple el Principio 1 (bien público digital).',false,'Ser gratis no basta: debe ser abierta (código, datos anónimos y contenidos) y cocreada con la comunidad.'],
+ ['El Hospital Regional atiende a más de un millón de personas de 44 municipios, por eso conviene resolver a distancia lo que no necesita hospital.',true,'Así se libera al hospital para la mediana y alta complejidad.']
+];
+function scoreQ(){
+  var n=Object.keys(ans).length,ok=0;Q.forEach(function(q,i){if(ans[i]===q[1])ok++});
+  $('score').hidden=n<Q.length;
+  $('score').innerHTML='<b>Acertaste '+ok+' de '+Q.length+'.</b> '+(ok===Q.length?'Excelente: ya puedes explicar el plan.':'Repasa las secciones de arriba y vuelve a intentar.');
+}
+var ans={};
+function renderQ(){
+  $('qz').innerHTML=Q.map(function(q,i){
+    var a=ans[i],h='';
+    if(a!==undefined){h='<div class="why '+(a===q[1]?'ok':'no')+'"><b>'+(a===q[1]?'Correcto. ':'No exactamente. ')+'</b>'+q[2]+'</div>'}
+    return '<div style="margin-bottom:16px"><p><b>'+(i+1)+'.</b> '+q[0]+'</p><div class="chips"><button class="chip" data-q="'+i+'" data-v="1" aria-pressed="'+(a===true)+'">Verdadero</button><button class="chip" data-q="'+i+'" data-v="0" aria-pressed="'+(a===false)+'">Falso</button></div>'+h+'</div>';
+  }).join('');
+  [].forEach.call($('qz').querySelectorAll('button'),function(b){b.onclick=function(){ans[+b.dataset.q]=b.dataset.v==='1';renderQ();scoreQ()}});
+}
+renderQ();
+
+/* Fases */
+var F=[
+ ['Fase 1','0-6 meses','Diagnóstico y cocreación','Línea base con datos del municipio, mapa de conectividad por vereda, acuerdos con hospital y EPS, mingas digitales y formación de promotores.'],
+ ['Fase 2','6-12 meses','Piloto','Tres puntos Sal con riesgo cardiovascular, funcionalidad del adulto mayor y salud mental básica. Se ajusta con la comunidad.'],
+ ['Fase 3','12-24 meses','Ampliación','Más puntos y veredas, componentes materno-infantil, nutrición, discapacidad y violencias. Se publican el código y los datos abiertos.'],
+ ['Fase 4','Hasta 2030','Consolidación','Componentes restantes, kit de replicación para otros municipios y evaluación de impacto.']
+];
+var f=0;
+function renderF(){
+  $('ph').innerHTML=F.map(function(x,i){return '<button aria-pressed="'+(i===f)+'" data-i="'+i+'"><b>'+x[0]+'</b><small>'+x[1]+'</small></button>'}).join('');
+  $('phOut').innerHTML='<h3>'+F[f][2]+'</h3><p>'+F[f][3]+'</p>';
+  [].forEach.call($('ph').children,function(b){b.onclick=function(){f=+b.dataset.i;renderF()}});
+}
+renderF();
+
+/* Datos reales */
+var DT=[
+ ['163.372','habitantes en Zipaquirá (2024)','DANE, proyecciones 2024','Es la población que el plan busca cubrir. La Fase 1 mapea las veredas para conocer cuántas personas viven lejos de la cabecera.'],
+ ['21.552','adultos mayores: el 13,2 % de la población (2024)','DANE, proyecciones 2024','Por eso el plan prioriza funcionalidad, prevención de caídas y control de enfermedades crónicas en este grupo.'],
+ ['27.085','menores de 12 años (2024)','DANE, proyecciones 2024','Justifica los componentes de primera infancia: crecimiento y desarrollo, vacunación y crianza.'],
+ ['44','municipios, con más de 1 millón de habitantes, dependen del Hospital Regional','Gobernación de Cundinamarca, 2019','La demanda regional se concentra en Zipaquirá: conviene resolver a distancia lo que no necesita hospital.'],
+ ['1.ª','causa de muerte en Colombia: las enfermedades del sistema circulatorio','MinSalud, ASIS Colombia 2024','Respalda el componente cardiovascular y el telemonitoreo de tensión y glucosa.'],
+ ['2.091 a 7.294','atenciones neuropsiquiátricas en Cundinamarca entre 2009 y 2015','Gobernación de Cundinamarca, Informe Adulto Mayor','Dato departamental y antiguo, pero muestra la tendencia al alza en salud mental. Se actualizará con el ASIS municipal.'],
+ ['Menos','médicos por 10.000 habitantes: Cundinamarca figura entre los departamentos con menor disponibilidad','MinSalud, ASIS Colombia 2024','Por eso la telexperticia: multiplica el alcance del talento humano disponible.']
+];
+var dsel=-1;
+function renderDt(){
+  $('dt').innerHTML=DT.map(function(d,i){return '<button aria-pressed="'+(i===dsel)+'" data-i="'+i+'"><span class="big">'+d[0]+'</span><small>'+d[1]+'</small></button>'}).join('');
+  var o=$('dtOut');
+  o.innerHTML=dsel<0?'<p>Elige una cifra para ver qué significa para el plan.</p>':'<h3>Qué significa para el plan</h3><p>'+DT[dsel][3]+'</p><p class="mute" style="font-size:.85rem">Fuente: '+DT[dsel][2]+'</p>';
+  [].forEach.call($('dt').children,function(b){b.onclick=function(){dsel=+b.dataset.i;renderDt()}});
+}
+renderDt();
+
+/* Descargas */
+function mdText(){
+  var t='# Sal de la Salud: telesalud para PyP en Zipaquirá\n\nPropuesta de trabajo. Faltan las cifras del ASIS municipal (morbilidad por vereda, población rural y conectividad).\n\n## Datos que sustentan el plan\n';
+  DT.forEach(function(d){t+='- **'+d[0]+'** '+d[1]+'. '+d[3]+' (Fuente: '+d[2]+')\n'});
+  t+='\n## Recorrido de un control\n';ST.forEach(function(x,i){t+=(i+1)+'. **'+x[0]+'.** '+x[1]+'\n'});
+  t+='\n## Componentes de PyP\n';C.forEach(function(c){t+='- **'+c[0]+'** (fase '+c[1]+'): '+c[3]+'\n'});
+  t+='\n## Bien público digital\n';PUB.forEach(function(x){t+='- **'+x[0]+':** '+x[1]+'\n'});
+  t+='\n## Fases\n';F.forEach(function(x){t+='- **'+x[0]+' ('+x[1]+'), '+x[2]+':** '+x[3]+'\n'});
+  return t;
+}
+(function(){
+  $('dl').hidden=false;
+  function go(name,data,type){
+    var url=URL.createObjectURL(new Blob([data],{type:type}));
+    var link=document.createElement('a');
+    link.href=url;link.download=name;
+    document.body.appendChild(link);link.click();link.remove();
+    setTimeout(function(){URL.revokeObjectURL(url)},1000);
+  }
+  $('dlHtml').onclick=function(){go('Sal_de_la_Salud_Zipaquira.html','<!DOCTYPE html>\n'+document.documentElement.outerHTML,'text/html;charset=utf-8')};
+  $('dlMd').onclick=function(){go('Resumen_Sal_de_la_Salud.md',mdText(),'text/markdown;charset=utf-8')};
+})();
+</script>
+</body>
+</html>
